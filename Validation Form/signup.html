@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML CSS Application Registration</title>
+    <link rel="stylesheet" href="signupstyle.css">
+    <style>
+      .drop{
+                border:1px solid white;
+                width:5em;
+                height:5em;
+                padding: 1em;
+                }
+            .red{
+                border:1px solid white;
+                width:5em;
+                height:5em;
+                background:red;
+                color:white;
+                }
+            .blue{
+                border:1px solid white;
+                width:5em;
+                height:5em;
+                background:blue;
+                color:white;
+                }
+            .grey{
+                border:1px solid white;
+                width:5em;
+                height:5em;
+                background:grey;
+                color:white;
+                }
+            .yellow{
+                border:1px solid white;
+                width:5em;
+                height:5em;
+                background:yellow;
+                color:white;
+                }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/passwordRequirements.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div class="cont">
+    <form class="signup-form" action="" method="">
+      <div class="form-header">
+        <h1>BGIS</h1>
+      </div>
+      <div class="form-body">
+        <div class="horizontal-group">
+          <div class="form-group left">
+            <label for="firstname" class="label-title" >IG Name*</label>
+            <input type="text" id="firstname" class="form-input" placeholder="Enter your IG Name" required="required" />
+            <label class="IGN"></label>
+          </div>
+          <div class="form-group right">
+            <label for="lastname" class="label-title">Character ID *</label>
+            <input type="number" id="lastname" class="form-input" placeholder="Enter your Character ID"  required/>
+            <label class="ID"></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="label-title">Email*</label> <br>
+          <input type="email" id="UserEmail" class="form-input" placeholder="Enter valid email" required="required" size="32">
+          <label class="M"></label>
+        </div>
+        <div class="horizontal-group">
+          <div class="form-group left">
+            <label for="password" class="label-title">Password *</label>
+            <input type="password" id="pw"  class="form-input" placeholder="Enter password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+
+          </div>
+          <div class="form-group right">
+            <label for="Phone Number" class="label-title">Phone Number *</label>
+            <input type="tel" id="Phone Number" name="Phone Number" class="form-input" palceholder="PhoneNumber" pattern="[6-9]{2}[0-9]{8}" title="Phone number with 7-9 and remaing 9 digit with 0-9"  required="required">
+          </div>
+        </div>
+        <div class="horizontal-group">
+          <div class="form-group left">
+            <label class="label-title">Gender:</label>
+            <div class="input-group">
+              <label for="male"><input type="radio" name="gender" value="male" id="male"> Male</label>
+              <label for="female"><input type="radio" name="gender" value="female" id="female"> Female</label>
+            </div>
+          </div>
+          <div class="form-group right">
+            <label for="experience" class="label-title">Age</label> <br>
+            <input type="number" min="18" max="90"  value="18" class="form-input">
+          </div>
+        </div>
+        <div class="horizontal-group">
+          <div class="form-group left" >
+            <label class="label-title">Your K/D</label>
+            <select class="form-input" id="level" >
+              <option value="ug">2</option>
+              <option value="pg">3</option>
+              <option value="others">Above 4</option>
+            </select>
+          </div>
+          <div class="form-group right">
+            <label for="experience" class="label-title">Conqueror Exp:</label>
+            <input type="range" min="0" max="20" step="1" value="0" id="experience" class="form-input" onChange="change();" style="height:28px;width:58%;padding:0;">
+            <span id="range-label">20S</span>
+          </div>
+        </div>
+        <div class="horizontal-group">
+          <div class="form-group left">
+            <label for="choose-file" class="label-title">Upload Statistics</label>
+            <input type="file" id="choose-file" size="80">
+          </div>
+          <div class="form-group right">
+            <label class="label-title">IGR</label>
+            <div >
+              <label><input type="checkbox" value="">IGL</label>
+              <label><input type="checkbox" value="">AR</label>
+              <label><input type="checkbox" value="">Sniper</label>
+              <label><input type="checkbox" value="">Scout</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="choose-file" class="label-title">Fair Play Declaration:</label>
+          <textarea class="form-input" rows="4" cols="50" style="height:auto"></textarea>
+        </div>
+      </div>
+      <label><input type="checkbox" class="ac" value="">I accept all terms and conditions</label>
+      <div class="form-footer">
+        <span>* required</span>
+        <button type="submit" class="btn">Apply</button>
+      </div>
+    </form>
+  </div>
+    <br>
+    <table>
+      <tr>
+      <td class="drop"><div class="drag red"></div></td>
+      <td class="drop"><div class="drag blue"></div></td>
+      <td class="drop"><div class="drag grey"></div></td>
+      <td class="drop"><div class="drag yellow"></div></td>
+      </tr>
+  </table> 
+  <script>
+                 $('.drag').draggable({
+                     
+                      opacity : 0.5,
+                      axis:'x',
+                      revert: true,
+                      stop: function(event) {
+                              var dropelt = document.elementFromPoint(event.clientX, event.clientY);
+                              var dropcell = dropelt.tagName == "td" ? $(dropelt) : $(dropelt).closest('td');
+                              var dropdiv = dropcell.find('div');
+                              var origcell = $(this).parent('td');
+                              var origdiv = origcell.find('div');
+                              origdiv.detach();
+                              dropdiv.detach();
+                              
+                      
+                              origcell.append(dropdiv);
+                              dropcell.append(origdiv);
+                      }
+              });
+
+  </script>
+    <script>
+      $(function(){
+                $(".form-input").blur(function(){
+                    let ig = $("#firstname").val();
+
+                    if(ig === ''){
+                        $(".IGN").text("*required").css("color", "white");
+                    }else{
+                        $(".IGN").text("");
+                    }
+                });
+                $(".form-input").blur(function(){
+                  let cid = $("#lastname").val();
+                  if(cid === ''){
+                        $(".ID").text("*required").css("color", "white");
+                    }else{
+                        $(".ID").text("");
+                    }
+                });
+                $(".form-input").blur(function(){
+                  let cid = $("#UserEmail").val();
+                  if(cid === ''){
+                        $(".M").text("*required").css("color", "white");
+                    }else{
+                        $(".M").text("");
+                    }
+                });
+                
+
+
+                $('.btn').click(function() {  
+ 
+                    $(".error").hide();
+                    var hasError = false;
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                    var emailaddressVal = $("#UserEmail").val();
+                    if(emailaddressVal == '') {
+                        $("#UserEmail").after(' <br> <span class="error">Please enter your email address.</span>');
+                        hasError = true;
+                    }
+
+                    else if(!emailReg.test(emailaddressVal)) {
+                        $("#UserEmail").after('<br> <span class="error">Enter a valid email address.</span>');
+                        hasError = true;
+                    }
+
+                    if(hasError == true) { return false; }
+                
+
+                });       
+               
+      });
+    </script>
+  </body>
+</html>
